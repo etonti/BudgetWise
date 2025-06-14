@@ -323,14 +323,11 @@ function updateCharts() {
     resetTransactionForm();
     showModal(transactionModal);
     });
-
-    // Ouvrir modal définir budget
     setBudgetBtn.addEventListener('click', () => {
     renderBudgetInputs();
     showModal(budgetModal);
     });
 
-    // Fermer modals (croix)
     document.querySelectorAll('.modal .close').forEach(span => {
     span.addEventListener('click', () => {
         closeModal(span.closest('.modal'));
@@ -354,7 +351,7 @@ function updateCharts() {
     }
 
     if (id) {
-        // Modifier existant
+
         const tx = transactions.find(t => t.id === id);
         if (tx) {
         tx.type = type;
@@ -365,7 +362,7 @@ function updateCharts() {
         tx.tags = tags;
         }
     } else {
-        // Nouveau
+
         transactions.push({
         id: generateId(),
         type,
