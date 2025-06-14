@@ -1,15 +1,15 @@
 import pytest
-from backend.app import app, get_db
-import sqlite3
 import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from backend.app import app, get_db
 
 @pytest.fixture
 def client():
-    # Configuration spécifique pour les tests
     app.config['TESTING'] = True
     app.config['DATABASE'] = ':memory:'
     
-    # Réinitialise la base de données
     with app.app_context():
         db = get_db()
         db.execute('DROP TABLE IF EXISTS transactions')
@@ -26,7 +26,7 @@ def client():
         ''')
         db.commit()
 
-    yield app.test_client()  # Utilisez cette syntaxe plus simple
+    yield app.test_client()
 
 def test_add_transaction(client):
     response = client.post('/api/transactions', json={
