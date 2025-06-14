@@ -8,22 +8,22 @@
 
 /* Couleurs principales */
 :root {
-    --rose: #f8c8dc;
-    --lavande: #c8b6ff;
-    --blanc: #fffafc;
-    --gris-clair: #f2f2f2;
-    --gris: #999;
-    --violet-foncé: #7752fe;
-    --noir-doux: #333;
+    --bleu: #007BFF;
+    --rouge: #FF3B30;
+    --blanc: #FFFFFF;
+    --gris-clair: #f8f9fa;
+    --gris: #ccc;
+    --noir: #212529;
 }
 
+/* Corps */
 body {
-    background-color: var(--blanc);
-    color: var(--noir-doux);
+    background-color: var(--gris-clair);
+    color: var(--noir);
     padding: 20px;
 }
 
-/* Container principal */
+/* Container */
 .container {
     max-width: 1200px;
     margin: auto;
@@ -37,15 +37,15 @@ header {
 
 header h1 {
     font-size: 3em;
-    color: var(--violet-foncé);
+    color: var(--bleu);
 }
 
 header p {
     font-size: 1.2em;
-    color: var(--gris);
+    color: var(--rouge);
 }
 
-/* Cartes */
+/* Dashboard */
 .dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -56,11 +56,11 @@ header p {
 .balance-card,
 .budget-card {
     flex: 1;
-    background-color: var(--lavande);
+    background-color: var(--bleu);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .balance-card h2,
@@ -70,13 +70,12 @@ header p {
 }
 
 .stats {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .stats div {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
 }
 
 /* Transactions */
@@ -86,7 +85,7 @@ header p {
 
 .transactions h2 {
     margin-bottom: 15px;
-    color: var(--violet-foncé);
+    color: var(--bleu);
 }
 
 .filters {
@@ -104,11 +103,12 @@ header p {
     border: 1px solid var(--gris);
 }
 
+/* Table Transactions */
 #transactions-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
-    background-color: var(--gris-clair);
+    background-color: var(--blanc);
 }
 
 #transactions-table th,
@@ -118,24 +118,52 @@ header p {
     text-align: center;
 }
 
-#add-transaction-btn,
-#set-budget-btn,
-#export-pdf-btn,
-#apply-filters {
-    background-color: var(--rose);
+#transactions-table th {
+    background-color: var(--bleu);
+    color: white;
+}
+
+/* Boutons */
+button,
+.btn-export {
+    background-color: var(--rouge);
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
-    color: var(--noir-doux);
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#add-transaction-btn:hover,
-#set-budget-btn:hover,
-#export-pdf-btn:hover,
-#apply-filters:hover {
-    background-color: #f4a6c3;
+button:hover,
+.btn-export:hover {
+    background-color: #cc2e24;
+}
+
+/* Boutons d'action (modifier/supprimer) */
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    margin: 2px;
+}
+
+.edit-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
 
 /* Modals */
@@ -154,15 +182,15 @@ header p {
     background-color: var(--blanc);
     padding: 25px;
     border-radius: 15px;
-    width: 90%;
     max-width: 500px;
+    width: 90%;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
 .modal-content h2 {
     margin-bottom: 15px;
-    color: var(--violet-foncé);
+    color: var(--bleu);
 }
 
 .modal-content form > div {
@@ -170,8 +198,8 @@ header p {
 }
 
 .modal-content label {
-    display: block;
     font-weight: bold;
+    display: block;
     margin-bottom: 5px;
 }
 
@@ -180,12 +208,12 @@ header p {
     width: 100%;
     padding: 8px;
     border: 1px solid var(--gris);
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .modal-content button[type="submit"],
 #add-category-btn {
-    background-color: var(--violet-foncé);
+    background-color: var(--bleu);
     color: white;
     border: none;
     padding: 10px;
@@ -202,21 +230,22 @@ header p {
 }
 
 /* Graphiques */
-.charts, .charts-pair {
+.charts,
+.charts-pair {
     display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 30px;
     flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    justify-content: center;
 }
 
 .chart-container {
-    background-color: var(--gris-clair);
+    background-color: var(--blanc);
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 100%;
     max-width: 500px;
+    width: 100%;
 }
 
 /* Responsive */
