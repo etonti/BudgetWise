@@ -3,6 +3,7 @@ from flask_cors import CORS
 import sqlite3
 from datetime import datetime
 import os
+from flask import g
 
 app = Flask(__name__)
 CORS(app)
@@ -36,6 +37,12 @@ def init_db():
                 )
             ''')
             db.commit()
+            
+@app.teardown_appcontext
+def close_db(error):
+    """Ferme la connexion à la DB à la fin de chaque requête"""
+    if hasattr(g, 'db'):
+        g.db.close()
 
 @app.route('/api/transactions', methods=['GET'])
 def get_transactions():
