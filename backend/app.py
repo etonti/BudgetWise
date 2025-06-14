@@ -1,9 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, g
 from flask_cors import CORS
 import sqlite3
 from datetime import datetime
 import os
-from flask import g
 
 app = Flask(__name__)
 CORS(app)
@@ -37,12 +36,19 @@ def init_db():
                 )
             ''')
             db.commit()
-            
+
+# Appel de init_db() au démarrage du module (utile sur Render)
+init_db()
+
 @app.teardown_appcontext
 def close_db(error):
     """Ferme la connexion à la DB à la fin de chaque requête"""
     if hasattr(g, 'db'):
         g.db.close()
+
+@app.route('/')
+def index():
+    return jsonify({"message": "Bienvenue sur l'API BudgetWise"}), 200
 
 @app.route('/api/transactions', methods=['GET'])
 def get_transactions():
@@ -150,6 +156,5 @@ def get_stats():
         })
 
 if __name__ == '__main__':
-    init_db()
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
