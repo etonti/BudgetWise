@@ -1,1 +1,1 @@
-web: cd backend && python -c "from app import init_db; init_db()" && gunicorn app:app
+web: python -m gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers=2 --timeout=120
