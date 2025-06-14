@@ -1,7 +1,7 @@
 import pytest
 import sqlite3
-import os
-from backend.app import app, get_db
+import pytest
+from backend.app import app, get_db 
 
 @pytest.fixture
 def client():
