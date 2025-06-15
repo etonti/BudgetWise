@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetWise - Gestion de budget</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BudgetWise</h1>
+            <p>Gestion de budget personnel</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="balance-card">
+                <h2>Solde</h2>
+                <p id="balance">0.00 €</p>
+                <div class="stats">
+                    <div>
+                        <span>Revenus</span>
+                        <span id="income">0.00 €</span>
+                    </div>
+                    <div>
+                        <span>Dépenses</span>
+                        <span id="expenses">0.00 €</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="budget-card">
+                <h2>Budget</h2>
+                <div id="budget-list"></div>
+                <button id="set-budget-btn">Définir budget</button>
+            </div>
+        </div>
+
+        <div class="transactions">
+            <h2>Transactions</h2>
+            <div class="filters">
+                <select id="type-filter">
+                    <option value="all">Tous</option>
+                    <option value="income">Revenus</option>
+                    <option value="expense">Dépenses</option>
+                </select>
+                <input type="date" id="start-date">
+                <input type="date" id="end-date">
+                <button id="apply-filters">Filtrer</button>
+            </div>
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Catégorie</th>
+                        <th>Montant</th>
+                        <th>Description</th>
+                        <th>Tags</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="add-transaction-btn">Ajouter une transaction</button>
+        </div>
+        
+<button id="export-pdf-btn" class="btn-export">Exporter PDF</button>
+
+        <div class="charts">
+            <div class="chart-container">
+                <canvas id="expenses-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div id="transaction-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Nouvelle transaction</h2>
+            <form id="transaction-form">
+                <input type="hidden" id="transaction-id">
+                <div>
+                    <label for="transaction-type">Type</label>
+                    <select id="transaction-type" required>
+                        <option value="income">Revenu</option>
+                        <option value="expense">Dépense</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="transaction-amount">Montant (€)</label>
+                    <input type="number" id="transaction-amount" step="0.01" required>
+                </div>
+                <div>
+                    <label for="transaction-category">Catégorie</label>
+                    <input type="text" id="transaction-category" required>
+                </div>
+                <div>
+                    <label for="transaction-date">Date</label>
+                    <input type="date" id="transaction-date" required>
+                </div>
+                <div>
+                    <label for="transaction-description">Description</label>
+                    <input type="text" id="transaction-description">
+                </div>
+                <div>
+                    <label for="transaction-tags">Tags (séparés par des virgules)</label>
+                    <input type="text" id="transaction-tags" placeholder="urgent, récurrent">
+                </div>
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+        
+
+    </div>
+
+    <div id="budget-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Définir le budget</h2>
+            <form id="budget-form">
+                <div id="budget-inputs">
+                </div>
+                <button type="button" id="add-category-btn">Ajouter une catégorie</button>
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+
+<div class="charts-pair">
+    <div id="alert-modal" class="modal-card">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Alertes</h2>
+            <div id="alert-content"></div>
+        </div>
+    </div>
+    <div class="chart-container">
+        <canvas id="monthly-chart"></canvas>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
