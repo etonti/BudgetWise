@@ -3,13 +3,12 @@ from flask_cors import CORS
 import sqlite3
 import os
 
-# 📁 Dossier contenant les fichiers HTML/CSS/JS
+
 FRONTEND_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend'))
 
 app = Flask(__name__, static_folder=FRONTEND_FOLDER, static_url_path='')
 CORS(app)
 
-# === DATABASE SETUP ===
 DATABASE = 'budgetwise.db'
 
 def get_db():
@@ -44,7 +43,6 @@ def close_db(error):
     if hasattr(g, 'db'):
         g.db.close()
 
-# === API ROUTES ===
 @app.route('/api/transactions', methods=['GET'])
 def get_transactions():
     type_filter = request.args.get('type')
